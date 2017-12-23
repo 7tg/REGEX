@@ -7,6 +7,7 @@ package regex;
 import java.io.*;
 import java.util.Locale;
 import java.util.Scanner;
+
 /**
  *
  * @author Tayyip
@@ -23,10 +24,10 @@ public class WordList {
     
     File dic = null;
 
-public WordList(String dic_file_location,String out_file_location) {
-        dic = new File(dic_file_location);
+public WordList(String dic_file) {
+        dic = new File(System.getProperty("user.dir").replace("\\", "/")+"/src/regex/W_in/"+dic_file);
         try{
-        out = new PrintWriter(out_file_location,"UTF-8");
+        out = new PrintWriter(System.getProperty("user.dir").replace("\\", "/")+"/src/regex/W_out/out.txt","UTF-8");
         dictionary = new Scanner(dic);
         dictionaryBuilder = new StringBuilder();
         }catch(Exception e)
@@ -37,6 +38,7 @@ public WordList(String dic_file_location,String out_file_location) {
 }
 private String[] makeDic()
 {
+       System.out.println("////////Started\\\\\\\\\\\\\\\\");
     System.out.println("+++Generating Dictionary+++");
     String[] Dictionary = null;
     while(dictionary.hasNext() == true)
@@ -61,7 +63,7 @@ public boolean makeFile(long file_size)
 {
    file_size = file_size*(1024*1024);
    String[] dictionary = makeDic();
-   
+
    System.out.println("\n+++File creation started+++");
    
    int counter = 1;
@@ -77,19 +79,19 @@ public boolean makeFile(long file_size)
         
         if(i == 0)
         {
-        temp = temp.substring(0, 1).toUpperCase(Locale.ENGLISH) + temp.substring(1);
-        sb.append(temp+" ");
-        count += 1;
+            temp = temp.substring(0, 1).toUpperCase(Locale.ENGLISH) + temp.substring(1);
+            sb.append(temp+" ");
+            count += 1;
         }
         else if (i == random-1)
         {
-        sb.append(temp+"."+System.lineSeparator());
-        count += 2;
+            sb.append(temp+"."+System.lineSeparator());
+            count += 2;
         }
         else
         {
-        sb.append(temp+" ");
-        count += 1;
+            sb.append(temp+" ");
+            count += 1;
         }
         
         if((((count/(1024*1024)) % (100*counter)) == 0) && (count >= (1024*1024)))
