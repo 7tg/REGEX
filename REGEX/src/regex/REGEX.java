@@ -21,15 +21,19 @@ public class REGEX {
         Scanner sc = new Scanner(System.in);
         do
         {
+            
             printMenu();
             temp = sc.nextInt();
+            long startTime = System.currentTimeMillis();
             cases(temp);
-            System.out.println("\nWaiting 3 sec...\n");
-            try {
-                TimeUnit.SECONDS.sleep(3);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(REGEX.class.getName()).log(Level.SEVERE, null, ex);
+            if (temp != -1) 
+            {
+                long endTime = System.currentTimeMillis();
+                System.out.println("\nTotal Running Time :"+((endTime-startTime)/1000)+","+((endTime-startTime)%1000)+"s\n");
+                System.out.println("Press any key to continue...");
+                sc.next();
             }
+            
         }while(temp != -1);
         
         /*
@@ -70,7 +74,7 @@ public class REGEX {
        System.out.println("7.Count most frequent word and its frequency in the file");
        System.out.println("8.Count most three frequent characters and their frequency in the file");
        System.out.println("-1.Exit");
-       System.out.println("Number:");
+       System.out.print("Number:");
   }
   
    public static void cases(int i)
@@ -150,6 +154,14 @@ public class REGEX {
            return;
        }
        return;
+   }
+   
+   private static void waitKey()
+   {
+       Scanner sc = new Scanner(System.in);
+       
+
+       sc.close();
    }
     
 }

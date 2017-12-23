@@ -118,7 +118,7 @@ public class SearchList {
             for (int i = 0; i < s.length; i++) 
             {
                 if (s[i].matches("^...[abc].*")){
-                    System.out.println(s[i]);
+                    //System.out.println(s[i]);
                     count++;
                 }   
             }           
